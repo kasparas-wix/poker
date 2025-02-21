@@ -1,3 +1,3 @@
-import Counter from './counter';
+import { evaluatePokerHand } from './evaluate-hand';
 
-export default new Counter();
+export default evaluatePokerHand;
