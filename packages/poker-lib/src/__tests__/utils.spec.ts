@@ -3,6 +3,7 @@ import {
   compareHighestCard,
   isFourOfAKind,
   isFullHouse,
+  isHandCorrect,
   isPair,
   isRoyalFlush,
   isStraight,
@@ -113,6 +114,18 @@ describe('Utils', () => {
       expect(compareHighestCard(hand1, hand3)).toBe(-1);
       expect(compareHighestCard(hand3, hand4)).toBe(1);
       expect(compareHighestCard(hand4, hand5)).toBe(0);
+    });
+
+    it('should determine if a hand is correct', () => {
+      const hand1 = '7S 4S 2H AS 6C';
+      const hand2 = '1S 4S 2H AS 6C';
+      const hand3 = '7S 7S 2H AS 6C';
+      const hand4 = '7K 5S 2H AS 6C';
+
+      expect(isHandCorrect(hand1)).toBe(true);
+      expect(isHandCorrect(hand2)).toBe(false);
+      expect(isHandCorrect(hand3)).toBe(false);
+      expect(isHandCorrect(hand4)).toBe(false);
     });
   });
 });

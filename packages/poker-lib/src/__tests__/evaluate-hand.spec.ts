@@ -92,5 +92,11 @@ describe('Evaluate hand', () => {
         );
       });
     });
+
+    it('should throw an error when an incorrect hand is provided', () => {
+      expect(() =>
+        evaluatePokerHand('1S 5H 6H TS AC', TEST_CASES[0].handA),
+      ).toThrow('Incorrect card hands provided');
+    });
   });
 });

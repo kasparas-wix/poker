@@ -1,6 +1,7 @@
 import { Card, CardValue } from './types';
 
-export const CARD_VALUES = '23456789TJQKA';
+const CARD_VALUES = '23456789TJQKA';
+const CARD_SUITS = 'SHDC';
 
 export function sortByValue(hand: Card[]) {
   return [...hand].sort((a, b) => {
@@ -99,4 +100,35 @@ export function compareHighestCard(a: Card[], b: Card[]) {
   }
 
   return compareVal > 0 ? 1 : compareVal === 0 ? 0 : -1;
+}
+
+export function isHandCorrect(hand: string) {
+  const cards = hand.split(' ');
+
+  if (cards.length !== 5) {
+    return false;
+  }
+
+  // Check if cards are declared correctly
+  for (const card of cards) {
+    if (card.length !== 2) {
+      return false;
+    }
+
+    const isValueCorrect = CARD_VALUES.includes(card[0]);
+    const isSuitCorrect = CARD_SUITS.includes(card[1]);
+
+    if (!isValueCorrect || !isSuitCorrect) {
+      return false;
+    }
+  }
+
+  // Check if there are duplicate cards
+  const cardSet = new Set();
+  cards.forEach((card) => cardSet.add(card));
+  if (cardSet.size !== 5) {
+    return false;
+  }
+
+  return true;
 }

@@ -4,6 +4,7 @@ import {
   isFlush,
   isFourOfAKind,
   isFullHouse,
+  isHandCorrect,
   isPair,
   isRoyalFlush,
   isStraight,
@@ -13,6 +14,10 @@ import {
 } from './utils';
 
 export function evaluatePokerHand(a: string, b: string) {
+  if (!isHandCorrect(a) || !isHandCorrect(b)) {
+    throw Error('Incorrect card hands provided');
+  }
+
   const handA = a.split(' ') as Card[];
   const handB = b.split(' ') as Card[];
 
